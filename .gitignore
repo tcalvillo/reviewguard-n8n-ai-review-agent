@@ -1,0 +1,33 @@
+# Environment variables and local configuration
+.env
+.env.*
+!.env.example
+
+# n8n persistent data and local state
+n8n_data/
+.n8n/
+
+# Databases and backups
+*.sqlite
+*.sqlite3
+*.db
+*.bak
+
+# Credentials, private keys, and secrets
+credentials/
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Logs and execution data
+*.log
+logs/
+executions/
+
+# Local development files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
