@@ -4,6 +4,40 @@ ReviewGuard is a local, AI-assisted business-review management prototype built w
 
 > **Prototype status:** This repository contains a test workflow. It uses an n8n chat trigger and a simulated Google Business Profile reply operation. It does **not** connect to Google Business Profile, create a public business listing, read live reviews, or publish public replies.
 
+## Screenshots
+
+The screenshots below show the local prototype and its manually tested paths. Review content and review IDs are synthetic. The Google Business Profile operation is simulated; no public reply is sent.
+
+### 1. End-to-end workflow
+
+![ReviewGuard n8n workflow overview](screenshots/01-full-workflow.png)
+
+The complete n8n workflow, from chat-based test input through classification, duplicate detection, rating-based routing, outbound guardrails, and notifications.
+
+### 2. Rating-based routing
+
+![ReviewGuard rating decision and notification routes](screenshots/02-review-routing.png)
+
+The one-star manual-review path is separate from the automated test path for ratings of two to five stars.
+
+### 3. AI agent and outbound security guardrails
+
+![ReviewGuard AI agent and security guardrails](screenshots/03-ai-security-guardrails.png)
+
+Gemma runs locally through Ollama. The generated reply passes through n8n Guardrails before reaching the simulated reply node.
+
+### 4. Review tracking Data Table
+
+![ReviewGuard processed reviews Data Table](screenshots/04-review-tracking-data-table.png)
+
+The Data Table stores synthetic review IDs and their initial processing metadata.
+
+### 5. Duplicate review rejection
+
+![ReviewGuard duplicate review rejection execution](screenshots/05-duplicate-rejection-execution.png)
+
+The second sequential submission of `TEST-002` stops at **Check Duplicate Review ID**. The node returns zero output items, so the downstream registration and reply-notification path does not run again.
+
 ## What it demonstrates
 
 - Local LLM inference through Ollama using `gemma4:12b`.
@@ -176,7 +210,12 @@ reviewguard-n8n-ai-review-agent/
 │   ├── architecture.md
 │   └── testing-results.md
 └── screenshots/
-    └── (add sanitized screenshots)
+    ├── 01-full-workflow.png
+    ├── 02-review-routing.png
+    ├── 03-ai-security-guardrails.png
+    ├── 04-review-tracking-data-table.png
+    ├── 05-duplicate-rejection-execution.png
+    └── README.md
 ```
 
 ## Future improvements
